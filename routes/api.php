@@ -11,6 +11,7 @@ use App\Http\Controllers\API\PaymentController;
 use App\Http\Controllers\API\CalendarController;
 use App\Http\Controllers\API\HallAvailabilityController;
 use App\Http\Controllers\API\BookingSummaryController;
+use App\Http\Controllers\API\InvoiceController;
 
 Route::prefix('v1')->group(function () {
 
@@ -38,7 +39,11 @@ Route::prefix('v1')->group(function () {
     Route::get('halls/available', [HallAvailabilityController::class, 'available']);
     Route::get('bookings/{id}/summary', [BookingSummaryController::class, 'show']);
 
-    // ✅ STATUS ROUTES (ADD THIS)
+    // ✅ INVOICE ROUTES
+    Route::get('bookings/{id}/invoice', [InvoiceController::class, 'generate']);
+    Route::post('bookings/{id}/send-invoice', [InvoiceController::class, 'sendEmail']); // ⭐ NEW
+
+    // ✅ STATUS ROUTES
     Route::post('bookings/{id}/confirm', [BookingController::class, 'confirm']);
     Route::post('bookings/{id}/cancel', [BookingController::class, 'cancel']);
     Route::post('bookings/{id}/complete', [BookingController::class, 'complete']);
