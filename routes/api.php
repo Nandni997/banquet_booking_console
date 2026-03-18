@@ -12,6 +12,7 @@ use App\Http\Controllers\API\CalendarController;
 use App\Http\Controllers\API\HallAvailabilityController;
 use App\Http\Controllers\API\BookingSummaryController;
 use App\Http\Controllers\API\InvoiceController;
+use App\Http\Controllers\API\DashboardController;
 
 Route::prefix('v1')->group(function () {
 
@@ -50,5 +51,8 @@ Route::prefix('v1')->group(function () {
 
     // ✅ Bookings (KEEP LAST)
     Route::apiResource('bookings', BookingController::class);
+    // ✅ Dashboard Stats
+    Route::get('dashboard/stats', [DashboardController::class, 'stats']);
+
 
 });
